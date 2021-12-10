@@ -3,8 +3,6 @@ package demo_test
 import (
 	"database/sql"
 	"fmt"
-	"log"
-	"os"
 	"testing"
 	"time"
 
@@ -12,19 +10,6 @@ import (
 	"github.com/ory/dockertest/v3"
 	"github.com/ory/dockertest/v3/docker"
 )
-
-var pool *dockertest.Pool
-
-func TestMain(m *testing.M) {
-	var err error
-	pool, err = dockertest.NewPool("")
-	if err != nil {
-		log.Fatalf("Could not connect to docker: %s", err)
-		os.Exit(1)
-	}
-	code := m.Run()
-	os.Exit(code)
-}
 
 func db(t *testing.T) *sql.DB {
 	resource, err := pool.RunWithOptions(&dockertest.RunOptions{
