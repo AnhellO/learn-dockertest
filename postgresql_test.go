@@ -44,7 +44,7 @@ func db(t *testing.T) *sql.DB {
 	return db
 }
 
-func TestDemo(t *testing.T) {
+func random(t *testing.T) {
 	for i := 0; i < 10; i++ {
 		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
 			t.Parallel()
