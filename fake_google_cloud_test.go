@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -40,7 +39,7 @@ func setupGcloud() {
 func TestFakeGCloudStorage(t *testing.T) {
 	pwd, err := os.Getwd()
 	if err != nil {
-		log.Fatalf("failed to get working directory: %s", err)
+		t.Fatalf("failed to get working directory: %s", err)
 	}
 
 	resource, err := pool.RunWithOptions(&dockertest.RunOptions{
