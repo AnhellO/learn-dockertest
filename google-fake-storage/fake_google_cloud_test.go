@@ -1,4 +1,4 @@
-package demo_test
+package gcs_test
 
 import (
 	"context"
@@ -33,7 +33,7 @@ func (l HostFixRoundTripper) RoundTrip(request *http.Request) (*http.Response, e
 }
 
 func setupGcloud() {
-	os.Setenv("GOOGLE_APPLICATION_CREDENTIALS", "path/to/your/credentials")
+	os.Setenv("GOOGLE_APPLICATION_CREDENTIALS", "credentials/credentials.json")
 }
 
 func TestFakeGCloudStorage(t *testing.T) {
@@ -44,7 +44,7 @@ func TestFakeGCloudStorage(t *testing.T) {
 
 	resource, err := pool.RunWithOptions(&dockertest.RunOptions{
 		Repository:   "fsouza/fake-gcs-server",
-		Tag:          "latest",
+		Tag:          "1.30",
 		Name:         "fake-gcs-server",
 		ExposedPorts: []string{"4443"},
 		Cmd:          []string{"-backend", "memory", "-scheme", "http", "-port", "4443", "-public-host", "gcs:4443", "-external-url", "http://gcs:4443"},
@@ -57,7 +57,7 @@ func TestFakeGCloudStorage(t *testing.T) {
 		config.Mounts = []docker.HostMount{
 			{
 				Target: "/data",
-				Source: fmt.Sprintf("%s/examples/data", pwd),
+				Source: fmt.Sprintf("%s/data", pwd),
 				Type:   "bind",
 			},
 		}

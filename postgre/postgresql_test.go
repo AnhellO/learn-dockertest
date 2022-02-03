@@ -1,4 +1,4 @@
-package demo_test
+package postgre_test
 
 import (
 	"database/sql"

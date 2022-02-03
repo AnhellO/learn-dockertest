@@ -10,5 +10,6 @@ require (
 	github.com/jackc/pgx v3.6.2+incompatible
 	github.com/ory/dockertest/v3 v3.6.3
 	github.com/shopspring/decimal v1.3.1 // indirect
+	go.mongodb.org/mongo-driver v1.8.3
 	google.golang.org/api v0.58.0
 )

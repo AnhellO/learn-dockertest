@@ -1,4 +1,4 @@
-package demo_test
+package mongo_test
 
 import (
 	"log"
@@ -12,7 +12,6 @@ import (
 var pool *dockertest.Pool
 
 func TestMain(m *testing.M) {
-	setupGcloud()
 	var err error
 	pool, err = dockertest.NewPool("")
 	if err != nil {
