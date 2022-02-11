@@ -1,0 +1,28 @@
+services:
+  # MongoDB
+  mongo:
+    container_name: mongodb
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+      - MONGO_INITDB_DATABASE=test_db
+    ports:
+      - "27017:27017"
+    networks:
+      - "mongo_network"
+
+  # Seeder
+  mongo-seed:
+    container_name: mongoseeder
+    build:
+      context: ./seeder
+    depends_on:
+      - mongo
+    restart: on-failure:5
+    networks:
+      - "mongo_network"
+
+networks:
+  mongo_network:
+    driver: bridge
